@@ -19,9 +19,6 @@ type CartContextType = {
   toggleCart: () => void;
 };
 
-// type CartItem = Product & { quantity: number };
-
-
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
@@ -35,15 +32,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(cartItems));
   }, [cartItems]);
   const toggleCart = () => setIsOpen((prev) => !prev);
 
-  // const addToCart = (product: Product) => {
-  //   setCartItems((prev) => [...prev, product]);
-  // };
   const incrementItem = (product: Product) => {
     setCartItems((prev) => {
       const existingItem = prev.find((item) => item.id === product.id);
@@ -71,7 +64,7 @@ const decrementItem = (product: Product) => {
           ? { ...item, quantity: item.quantity - 1 }
           : item
       )
-      .filter((item) => item.quantity > 0); // Remove item if quantity becomes 0
+      .filter((item) => item.quantity > 0);
   });
 };
 

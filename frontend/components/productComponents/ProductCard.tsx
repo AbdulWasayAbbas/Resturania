@@ -10,14 +10,7 @@ type Product = {
   image:{url:string}
 };
 
-type ProductCardProps = {
-  product: Product;
-  incrementItem: (product: Product) => void;
-  decrementItem: (product: Product) => void;
-};
-
 export default function ProductCard({ product}: {product:Product}) {
-// export default function ProductCard({ product, incrementItem,decrementItem }: ProductCardProps) {
   
   const [count,setCount] = useState(0);
   const { cartItems, decrementItem, incrementItem} = useCart();

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "../cartComponents/CartContext";
 
 import ProductCard from "./ProductCard";
+import ApiManager from "../../src/api/apiManager";
 
 type category = {
   id: number;
@@ -16,16 +17,16 @@ type category = {
 };
 
 export default function ProductList() {
-  const { incrementItem,decrementItem } = useCart();
     const [data, setData] = useState<category[]>([]);
       const [loading, setLoading] = useState(true);
       const [error, setError] = useState(null);
       
       useEffect(()  => {
+        ApiManager.getProducts();
       const fetchData = async () => {
         try {
           
-          const response = await fetch('http://localhost:1337/api/categories?populate[products][populate]=image')    
+          const response = await fetch('http://localhost:1337/api/categories?populate[products]][fields][0]=name&populate[products][fields][1]=description&populate[products][fields][2]=price&populate[products][populate][image][fields][0]=url')    
           if (!response.ok) {
             throw new Error('Failed to fetch data');
           }
@@ -58,8 +59,6 @@ export default function ProductList() {
               <ProductCard
               key={product['id']}
               product={product}
-              // IncrementItem={incrementItem}
-              // decrementItem={decrementItem}
               />
             ))}
           </div>

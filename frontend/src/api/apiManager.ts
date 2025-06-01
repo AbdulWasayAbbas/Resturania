@@ -5,13 +5,13 @@ const ApiManager = {
     getProducts: async () => {
         const url = process.env.RESTURANIA_BASE_URL+ EndPoints.getProducts;
         console.log(url,"---------",process.env.REACT_APP_BASE_URL);
-        // try {
-        //     const response = await axios.get(url);
-        //     return response;
-        // } catch (error) {
-        //     console.error(error);
-        //     return error;
-        // }
+        try {
+            // const response = await axios.get(url);
+            // return response;
+        } catch (error) {
+            console.error(error);
+            return error;
+        }
 
         const response = {
             "success":true,

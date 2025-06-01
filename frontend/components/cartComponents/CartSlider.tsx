@@ -41,9 +41,7 @@ export default function CartSlider() {
           
             <Link href="/checkout" passHref >
               <button className="w-full mt-4 bg-[#800000] text-white p-2 rounded place-self-end self-end cursor-pointer group " onClick={isOpen?toggleCart:()=>{}}>
-                {/* <Link href="/checkout" className="cursor-pointer group" > */}
-                  Checkout
-                {/* </Link> */}
+                Checkout
               </button>
             </Link>
         : <></>}
